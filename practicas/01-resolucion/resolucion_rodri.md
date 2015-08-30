@@ -1,34 +1,34 @@
 # TTPS opción Ruby
 
-# Ejercicio 1
+##Ejercicio 1
   1. Arreglo (`Array`)
-    ```ruby
-    [].class #=> Array
-    ```
+  ```ruby
+  [].class #=> Array
+  ```
   2. Diccionario o _hash_ (`Hash`)
-    ```ruby
-    {}.class #=> Hash
-    ```
+  ```ruby
+  {}.class #=> Hash
+  ```
   3. String (`String`)
-    ```ruby
-    'un_string'.class #=> String
-    ```
+  ```ruby
+  'un_string'.class #=> String
+  ```
   4. Símbolo (`Symbol`)
-    ```ruby
-    :symbol.class #=> Symbol
-    ```
+  ```ruby
+  :symbol.class #=> Symbol
+  ```
 
-# Ejercicio 2
+##Ejercicio 2
    > Falso. Esta instanciando dos objetos String distintos.
 
-# Ejercicio 3
+##Ejercicio 3
    ```ruby
    def reemplazar(block_str)
      block_str.gsub('{','do\n').gsub('}','end\n')
    end
    ```
 
-# Ejercicio 4
+##Ejercicio 4
    ```ruby
     def en_palabras(time)
       hour = time.hour
@@ -48,9 +48,9 @@
         puts "casi las #{hour + 1}"
       end
     end
-    ```
+   ```
 
-# Ejercicio 5
+##Ejercicio 5
    ```ruby
    def contar(needle, haystack)
       haystack.scan(needle).count
@@ -58,14 +58,14 @@
    ```
 
 
-# Ejercicio 6
+##Ejercicio 6
    ```ruby
-      def contar(needle, haystack)
-        haystack.downcase.split(/\s/).select {|word| word == needle}.count
-      end
-    ```
+    def contar(needle, haystack)
+      haystack.downcase.split(/\s/).select {|word| word == needle}.count
+    end
+   ```
 
-# Ejercicio 7
+##Ejercicio 7
   1. Imprimilo con sus caracteres en orden inverso.
     ```ruby
     'something'.reverse #=> "gnihtemos"
@@ -87,17 +87,24 @@
     reference.each {|vowel, number| string.gsub!(vowel, number.to_s) }
     ```
 
-# Ejercicio 8
+##Ejercicio 8
    ```ruby
    => ["TTPS OPCION RUBY", "ttps opcion ruby", "Ttps opcion ruby", "ttps oPCION rUBY"]
    ```
 
-# Ejercicio 9
+##Ejercicio 9
    ```ruby
    def longitud(an_array)
      an_array.map {|elem| elem.length}
    end
    ```
+
+##Ejercicio 13
+    ```ruby
+    puts 'Por favor, ingresa tu nombre:'
+    input = gets.chomp
+    puts "¡Hola, #{input}!"
+    ```
 
 10. Escribí una función llamada `a_ul` que reciba un `Hash` y retorne un `String` con los pares de clave/valor del hash
     formateados en una lista HTML `<ul>`. Por ejemplo:
@@ -122,14 +129,6 @@
     ```ruby
     rot("¡Bienvenidos a la cursada 2015 de TTPS Opción Ruby!", 13)
     # => "¡Ovrairavqbf n yn phefnqn 2015 qr GGCF Bcpvóa Ehol!"
-    ```
-
-
-# Ejercicio 13
-    ```ruby
-    puts 'Por favor, ingresa tu nombre:'
-    input = gets.chomp
-    puts "¡Hola, #{input}!"
     ```
 
 14. Dado un color expresado en notación [RGB](https://es.wikipedia.org/wiki/RGB), debés calcular su representación
