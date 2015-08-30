@@ -160,6 +160,11 @@ end
     rot13("¡Bienvenidos a la cursada 2015 de TTPS Opción Ruby!")
     # => "¡Ovrairavqbf n yn phefnqn 2015 qr GGCF Bcpvóa Ehol!"
     ```
+    ```ruby
+    def rot13(str)
+      str.tr!("abcdefghijklmnopqrstuvwxyz", "nopqrstuvwxyzabcdefghijklm")
+      end
+    ```
 
 12. Escribí una función más genérica, parecida a la del ejercicio anterior, que reciba como parámetro un `string` y un
     número `n`, y que realice una _rotación_ de `n` lugares de las letras del `string` y retorne el resultado. Por
@@ -170,6 +175,23 @@ end
     # => "¡Ovrairavqbf n yn phefnqn 2015 qr GGCF Bcpvóa Ehol!"
     ```
 
+    ```ruby
+   def rot(num = 13)
+       return self.split("").collect { |ch|
+             if /^[a-z]$/ === ch
+              ((ch[0] + num - 'a'[0]) % 26 + 'a'[0]).chr
+                    elsif /^[A-Z]$/ === ch
+                      ((ch[0] + num - 'A'[0]) % 26 + 'A'[0]).chr
+                            else
+                              ch
+                                    end
+                                        }.join("")
+                                          end
+
+      
+   
+      
+    ```
 13. Escribí un _script_ en Ruby que le pida al usuario su nombre y lo utilice para saludarlo imprimiendo en pantalla
     `¡Hola, <nombre>!`. Por ejemplo:
 
@@ -180,6 +202,11 @@ end
     ¡Hola, Matz!
     ```
 
+    ```ruby
+    puts "Por favor, ingresa tu nombre:"
+    read = gets.chomp
+    puts "Hola #{read}!"
+    ```
 14. Dado un color expresado en notación [RGB](https://es.wikipedia.org/wiki/RGB), debés calcular su representación
     entera y hexadecimal, donde la notación _entera_ se define como `red + green*256 + blue*256*256` y la _hexadecimal_
     como el resultado de expresar en hexadecimal el valor de cada color y concatenarlos en orden. Por ejemplo:
@@ -190,7 +217,14 @@ end
     notacion_entera([0, 128, 255])
     # => 16744448
     ```
-
+    
+    ```ruby
+    def notacion_hexa(array)
+      "#" + array.map{ |color| color.to_s(16).upcase}.join
+    end
+    def notacion_entera(array)
+      
+    ```
 15. Investigá qué métodos provee Ruby para:
   1. Conocer la lista de métodos de una clase.
   2. Conocer la lista de métodos de instancia de una clase.
