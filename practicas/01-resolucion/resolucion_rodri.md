@@ -22,48 +22,47 @@
    > Falso. Esta instanciando dos objetos String distintos.
 
 ##Ejercicio 3
-   ```ruby
-   def reemplazar(block_str)
-     block_str.gsub('{','do\n').gsub('}','end\n')
-   end
-   ```
+  ```ruby
+  def reemplazar(block_str)
+    block_str.gsub('{','do\n').gsub('}','end\n')
+  end
+  ```
 
 ##Ejercicio 4
-   ```ruby
-    def en_palabras(time)
-      hour = time.hour
-      min = time.min
-      case min
-      when 1..10
-        puts "#{hour} en punto"
-      when 11..20
-        puts "#{hour} y cuarto"
-      when 21..34
-        puts "#{hour} y media"
-      when 35..44
-        puts "#{hour + 1} menos veinticinco"
-      when 45..55
-        puts "#{hour + 1} menos cuarto"
-      when 56..59
-        puts "casi las #{hour + 1}"
-      end
+  ```ruby
+  def en_palabras(time)
+    hour = time.hour
+    min = time.min
+    case min
+    when 1..10
+      puts "#{hour} en punto"
+    when 11..20
+      puts "#{hour} y cuarto"
+    when 21..34
+      puts "#{hour} y media"
+    when 35..44
+      puts "#{hour + 1} menos veinticinco"
+    when 45..55
+      puts "#{hour + 1} menos cuarto"
+    when 56..59
+      puts "casi las #{hour + 1}"
     end
-   ```
+  end
+  ```
 
 ##Ejercicio 5
-   ```ruby
-   def contar(needle, haystack)
-      haystack.scan(needle).count
-    end
-   ```
-
+  ```ruby
+  def contar(needle, haystack)
+     haystack.scan(needle).count
+  end
+  ```
 
 ##Ejercicio 6
-   ```ruby
-    def contar(needle, haystack)
-      haystack.downcase.split(/\s/).select {|word| word == needle}.count
-    end
-   ```
+  ```ruby
+  def contar(needle, haystack)
+    haystack.downcase.split(/\s/).select {|word| word == needle}.count
+  end
+  ```
 
 ##Ejercicio 7
   1. Imprimilo con sus caracteres en orden inverso.
@@ -88,45 +87,45 @@
     ```
 
 ##Ejercicio 8
-   ```ruby
-   => ["TTPS OPCION RUBY", "ttps opcion ruby", "Ttps opcion ruby", "ttps oPCION rUBY"]
-   ```
+  ```ruby
+  => ["TTPS OPCION RUBY", "ttps opcion ruby", "Ttps opcion ruby", "ttps oPCION rUBY"]
+  ```
 
 ##Ejercicio 9
-   ```ruby
-   def longitud(an_array)
-     an_array.map {|elem| elem.length}
-   end
-   ```
+  ```ruby
+  def longitud(an_array)
+    an_array.map {|elem| elem.length}
+  end
+  ```
 
 ##Ejercicio 10
-    ```ruby
-    def a_ul(hash)
-      output = "<ul>"
-      hash.each {|key,value| output += "<li>#{key}: #{value}</li>"} + "</ul>"
-    end
-    ```
+  ```ruby
+  def a_ul(hash)
+    output = "<ul>"
+    hash.each {|key,value| output += "<li>#{key}: #{value}</li>"} + "</ul>"
+  end
+  ```
 
 ##Ejercicio11
-    ```ruby
-    def rot13(a_string)
-      a_string.tr("a-zA-Z", "n-za-mN-ZA-N")
-    ```
+  ```ruby
+  def rot13(a_string)
+    a_string.tr("a-zA-Z", "n-za-mN-ZA-N")
+  ```
 
 ##Ejercicio 12
-    ```ruby
-    def rot(a_string, n)
-      alphabet = ('a'..'z').to_a
-      a_string.scan(/[a-zA-Z]/).each {|char| a_string.gsub!(char, alphabet.rotate(n).fetch(alphabet.index(char))}
-    end
-    ```
+  ```ruby
+  def rot(a_string, n)
+    alphabet = ('a'..'z').to_a
+    a_string.scan(/[a-zA-Z]/).each {|char| a_string.gsub!(char, alphabet.rotate(n).fetch(alphabet.index(char))}
+  end
+  ```
 
 ##Ejercicio 13
-    ```ruby
-    puts 'Por favor, ingresa tu nombre:'
-    input = gets.chomp
-    puts "¡Hola, #{input}!"
-    ```
+  ```ruby
+  puts 'Por favor, ingresa tu nombre:'
+  input = gets.chomp
+  puts "¡Hola, #{input}!"
+  ```
 
 14) Dado un color expresado en notación [RGB](https://es.wikipedia.org/wiki/RGB), debés calcular su representación
     entera y hexadecimal, donde la notación _entera_ se define como `red + green*256 + blue*256*256` y la _hexadecimal_
