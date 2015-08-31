@@ -12,12 +12,18 @@
     arr = Array.new
    ```
   2. Diccionario o _hash_ (`Hash`)
+    ```ruby
     hash = {}
     hash = Hash.new
+    ```
   3. String (`String`)
+   ```ruby
     str = "Hola"
+   ```
   4. Símbolo (`Symbol`)
+   ```ruby
     :mi_simbolo
+   ```
 
 2. ¿Qué devuelve la siguiente comparación? ¿Por qué?
 
@@ -105,23 +111,33 @@ end
    # => 4
    ```
 
+   ```ruby
    def contar_palabras(str1, str2)
      str1.downcase.split(/\s/).select {|word| word == str2.downcase}.count
    end
+   ```
 
 
 7. Dada una cadena cualquiera, y utilizando los métodos que provee la clase `String`, realizá las siguientes
    operaciones sobre el `string`:
   1. Imprimilo con sus caracteres en orden inverso.
+   ```ruby
       puts string.reverse
+   ```
   2. Eliminá los espacios en blanco que contenga.
+   ```ruby
       string.gsub!("\s", "")
+   ```
   3. Convertí cada uno de sus caracteres por su correspondiente valor ASCII.
+   ```ruby
       string.chars.map(&:ord).join
+   ```
   4. Cambiá las vocales por números (`a` por `4`, `e` por `3`, `i` por `1`, `o` por `0`, `u` por `6`).
       
+   ```ruby
       reference = { 'a' => 4, 'e' => 3, 'i' => 1, 'o' => 0, 'u' => 6 }
       reference.each {|vowel, number| string.gsub!(vowel, number.to_s) }     
+   ```
 
 8. ¿Qué hace el siguiente código?
 
@@ -147,11 +163,13 @@ end
     a_ul({ perros: 1, gatos: 1, peces: 0})
     # => "<ul><li>perros: 1</li><li>gatos: 1</li><li>peces: 0</li></ul>"
     ```
+   ```ruby
     def a_ul(hash)
       output= "<ul>"
       hash.each {|key, value| output += "<li>#{key}: #{value}</li>"}
       output + "</ul>"
     end
+   ```
 
 11. Escribí una función llamada `rot13` que _encripte_ un `string` recibido como parámetro utilizando el algoritmo
     [`ROT13`](https://es.wikipedia.org/wiki/ROT13). Por ejemplo:
@@ -221,24 +239,46 @@ end
       "#" + array.map{ |color| color.to_s(16).upcase}.join
     end
     def notacion_entera(array)
-      
+     array.inject(0) {|color, index| color * 256^index } 
     ```
 15. Investigá qué métodos provee Ruby para:
   1. Conocer la lista de métodos de una clase.
+   ```ruby
       .methods
+   ```
   2. Conocer la lista de métodos de instancia de una clase.
+   ```ruby
       .instance_methods
+   ```
   3. Conocer las variables de instancia de una clase.
+   ```ruby
       .instance_variables
+   ```
   4. Obtener la lista de ancestros (_superclases_) de una clase.
+   ```ruby
       .ancestors
+   ```
 
 16. Escribí una función que encuentre la suma de todos los números naturales múltiplos de `3` ó `5` menores que un
     número `tope` que reciba como parámetro.
-
+     
+    ```ruby
+    def suma_rara(n)
+        (1..n).inject(0) {|suma, x| suma + x if ( x % 3 == 0 || x % 5 == 0)  }
+    end 
+    ```
 17. Cada nuevo término en la secuencia de Fibonacci es generado sumando los 2 términos anteriores. Los primeros 10
     términos son: `1`, `1`, `2`, `3`, `5`, `8`, `13`, `21`, `34`, `55`. Considerando los términos en la secuencia de
     Fibonacci cuyos valores no exceden los 4 millones, encontrá la suma de los términos pares.
+      
+    ```ruby
+          fib = [0,1]
+          33.times do |i|
+            if i > 1
+              fib.push(fib[i-1] + fib[i-2])
+            end
+          end
+    ```
 
 18. Un número _palíndromo_ se lee igual al derecho y al revés. El número palíndromo más grande obtenido de la
     multiplicación de dos números de 2 dígitos es `9009` (`91 * 99 = 9009`). Encontrá el palíndromo más grande obtenido a
