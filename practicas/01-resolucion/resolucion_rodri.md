@@ -110,18 +110,14 @@
 ##Ejercicio11
     ```ruby
     def rot13(a_string)
-     a_string.tr("abcdefghijklmnopqrstuvwxyz", "nopqrstuvwxyzabcdefghijklm")
+      a_string.tr("a-zA-Z", "n-za-mN-ZA-N")
     ```
 
 ##Ejercicio 12
     ```ruby
-    rot("¡Bienvenidos a la cursada 2015 de TTPS Opción Ruby!", 13)
-    # => "¡Ovrairavqbf n yn phefnqn 2015 qr GGCF Bcpvóa Ehol!"
-    ```
-
-    ```ruby
     def rot(a_string, n)
-    a_string.scan(\[a-zA-Z]\).each {|char| a_string.gsub!(char, (char.ord+n).chr)}
+      alphabet = ('a'..'z').to_a
+      a_string.scan(/[a-zA-Z]/).each {|char| a_string.gsub!(char, alphabet.rotate(n).fetch(alphabet.index(char))}
     end
     ```
 
@@ -131,8 +127,6 @@
     input = gets.chomp
     puts "¡Hola, #{input}!"
     ```
-
-
 
 14) Dado un color expresado en notación [RGB](https://es.wikipedia.org/wiki/RGB), debés calcular su representación
     entera y hexadecimal, donde la notación _entera_ se define como `red + green*256 + blue*256*256` y la _hexadecimal_
