@@ -127,30 +127,49 @@
   puts "¡Hola, #{input}!"
   ```
 
-14) Dado un color expresado en notación [RGB](https://es.wikipedia.org/wiki/RGB), debés calcular su representación
-    entera y hexadecimal, donde la notación _entera_ se define como `red + green*256 + blue*256*256` y la _hexadecimal_
-    como el resultado de expresar en hexadecimal el valor de cada color y concatenarlos en orden. Por ejemplo:
+##Ejercicio 14
+  ```ruby
+  def notacion_hexadecimal(rgb)
+    "#" + rgb.map {|color| color.to_s(16)}.join
+  end
 
-    ```ruby
-    notacion_hexadecimal([0, 128, 255])
-    # => '#0080FF'
-    notacion_entera([0, 128, 255])
-    # => 16744448
-    ```
+  def notacion_entera(rgb)
+    rgb.each_with_index.inject(0) {|sumador, colorindex| sumador + (colorindex[0] * 256**colorindex[1])}
+  end
+  ```
 
-15) Investigá qué métodos provee Ruby para:
+##Ejercicio 15
+ Investigá qué métodos provee Ruby para:
   1. Conocer la lista de métodos de una clase.
   2. Conocer la lista de métodos de instancia de una clase.
   3. Conocer las variables de instancia de una clase.
   4. Obtener la lista de ancestros (_superclases_) de una clase.
 
-16) Escribí una función que encuentre la suma de todos los números naturales múltiplos de `3` ó `5` menores que un
-    número `tope` que reciba como parámetro.
+##Ejercicio 16
+  ```ruby
+  def sum(tope)
+    (1..tope).inject(0) {|total, number| total + number if number % 3 == 0 || number % 5 == 0}
+  ```
 
-17) Cada nuevo término en la secuencia de Fibonacci es generado sumando los 2 términos anteriores. Los primeros 10
-    términos son: `1`, `1`, `2`, `3`, `5`, `8`, `13`, `21`, `34`, `55`. Considerando los términos en la secuencia de
-    Fibonacci cuyos valores no exceden los 4 millones, encontrá la suma de los términos pares.
+##Ejercicio 17
+ Cada nuevo término en la secuencia de Fibonacci es generado sumando los 2 términos anteriores. Los primeros 10
+términos son: `1`, `1`, `2`, `3`, `5`, `8`, `13`, `21`, `34`, `55`. Considerando los términos en la secuencia de
+Fibonacci cuyos valores no exceden los 4 millones, encontrá la suma de los términos pares.
+  ```ruby
+  def fibonacci(n)
+    pass
+  ```
 
-18) Un número _palíndromo_ se lee igual al derecho y al revés. El número palíndromo más grande obtenido de la
-    multiplicación de dos números de 2 dígitos es `9009` (`91 * 99 = 9009`). Encontrá el palíndromo más grande obtenido a
-    través de la multiplicación de dos números de 3 dígitos.
+##Ejercicio 18
+  ```ruby
+  def palindromo_mayor
+    palindromos = []
+    (100..999).each do |num1|
+      (100..999).each do |num2|
+        palindromos.push(num1*num2) if (num1*num2).to_s == (num1*num2).to_s.reverse
+      end
+    end
+    palindromos.sort.pop
+  end
+  =>906609
+  ```
