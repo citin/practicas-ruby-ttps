@@ -178,17 +178,15 @@ end
     ```ruby
    def rot(num = 13)
        return self.split("").collect { |ch|
-             if /^[a-z]$/ === ch
+          if /^[a-z]$/ === ch
               ((ch[0] + num - 'a'[0]) % 26 + 'a'[0]).chr
-                    elsif /^[A-Z]$/ === ch
-                      ((ch[0] + num - 'A'[0]) % 26 + 'A'[0]).chr
-                            else
-                              ch
-                                    end
-                                        }.join("")
-                                          end
-
-      
+          elsif /^[A-Z]$/ === ch
+              ((ch[0] + num - 'A'[0]) % 26 + 'A'[0]).chr
+          else
+              ch
+          end
+                                         }.join("")
+       end  
    
       
     ```
@@ -218,7 +216,7 @@ end
     # => 16744448
     ```
     
-    ```ruby
+   ```ruby
     def notacion_hexa(array)
       "#" + array.map{ |color| color.to_s(16).upcase}.join
     end
@@ -227,9 +225,13 @@ end
     ```
 15. Investigá qué métodos provee Ruby para:
   1. Conocer la lista de métodos de una clase.
+      .methods
   2. Conocer la lista de métodos de instancia de una clase.
+      .instance_methods
   3. Conocer las variables de instancia de una clase.
+      .instance_variables
   4. Obtener la lista de ancestros (_superclases_) de una clase.
+      .ancestors
 
 16. Escribí una función que encuentre la suma de todos los números naturales múltiplos de `3` ó `5` menores que un
     número `tope` que reciba como parámetro.
