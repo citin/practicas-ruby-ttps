@@ -149,6 +149,7 @@
   ```ruby
   def sum(tope)
     (1..tope).inject(0) {|total, number| total + number if number % 3 == 0 || number % 5 == 0}
+  end
   ```
 
 ##Ejercicio 17
@@ -158,18 +159,17 @@ Fibonacci cuyos valores no exceden los 4 millones, encontrá la suma de los tér
   ```ruby
   def fibonacci(n)
     pass
+  end
   ```
 
 ##Ejercicio 18
   ```ruby
   def palindromo_mayor
-    palindromos = []
     (100..999).each do |num1|
       (100..999).each do |num2|
-        palindromos.push(num1*num2) if (num1*num2).to_s == (num1*num2).to_s.reverse
+        palindromo = num1*num2 if (num1*num2).to_s == (num1*num2).to_s.reverse && num1*num2 > palindromo
       end
     end
-    palindromos.sort.pop
   end
   =>906609
   ```
