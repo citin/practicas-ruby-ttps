@@ -283,3 +283,13 @@ end
 18. Un número _palíndromo_ se lee igual al derecho y al revés. El número palíndromo más grande obtenido de la
     multiplicación de dos números de 2 dígitos es `9009` (`91 * 99 = 9009`). Encontrá el palíndromo más grande obtenido a
     través de la multiplicación de dos números de 3 dígitos.
+    
+    ```ruby
+    def ej18
+      (100..999).each { |num1|
+        (100..999).each { |num2|
+          resultado = num1 * num2 if (num1 * num2).to_s == (num1 * num2).to_s.reverse && num1*num2 > resultado
+        }
+      }
+    end
+    ```
