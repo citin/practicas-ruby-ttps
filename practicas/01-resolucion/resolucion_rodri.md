@@ -115,8 +115,10 @@
 ##Ejercicio 12
   ```ruby
   def rot(a_string, n)
-    alphabet = ('a'..'z').to_a
-    a_string.scan(/[a-zA-Z]/).each {|char| a_string.gsub!(char, alphabet.rotate(n).fetch(alphabet.index(char))}
+    a_string.scan(/[a-zA-Z]/).each do
+      |char|
+      a_string.gsub!(char, (n.times { char.succ! }; char.split('').last))
+    end
   end
   ```
 
