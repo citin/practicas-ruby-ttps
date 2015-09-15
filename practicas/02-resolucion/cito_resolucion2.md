@@ -180,7 +180,7 @@ los elementos fundamentales del mismo: los métodos, las clases y los módulos, 
        end
      end
      ```
-     ```
+     ```ruby
      class Taller
        def probar(objeto)
          objeto.arrancar
