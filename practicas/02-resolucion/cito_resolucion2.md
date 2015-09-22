@@ -1,4 +1,4 @@
-# TTPS opción Ruby
+ TTPS opción Ruby
 
 # Práctica 2
 
@@ -270,7 +270,7 @@ los elementos fundamentales del mismo: los métodos, las clases y los módulos, 
     # Ejemplo de uso de Countable
     class Greeter
       # Incluyo el Mixin
-      include Countable
+      include Contable
 
       def hi
         puts 'Hey!'
@@ -304,6 +304,19 @@ los elementos fundamentales del mismo: los métodos, las clases y los módulos, 
     > Nota: para simplificar el ejercicio, asumí que los métodos a contabilizar no reciben parámetros.
 
     > Tips: investigá `Module#alias_method` y `Module#included`.
+    ```ruby
+      module Contable
+      @@hash= Hash.new(0)
+      alias_method :o_send, :send
+      def print
+        puts @@hash
+      end
+      def send( sym )
+        @@hash[sym] += 1
+        o_send(sym)
+      end
+      end
+    ```
 
 12. Dada la siguiente clase _abstracta_ `GenericFactory`, implementá subclases de la misma que permitan la creación
     de instancias de dichas clases mediante el uso del método de clase `.create`, de manera tal que luego puedas usar
@@ -316,9 +329,17 @@ los elementos fundamentales del mismo: los métodos, las clases y los módulos, 
       end
 
       def initialize(**args)
+        puts "Inicializandooo"
         raise NotImplementedError
       end
     end
+
+    class Alumnos < GenericFactory
+      def initialize(**args)
+        puts args
+      end
+    end
+    a= Alumnos.create(uno:1, dos:2)
     ```
 
 13. Modificá la implementación del ejercicio anterior para que `GenericFactory` sea un módulo que se incluya como
