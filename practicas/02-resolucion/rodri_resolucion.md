@@ -241,37 +241,124 @@
         raise NotImplementedError
       end
     end
+
+    class Alumnos < GenericFactory
+      def initialize(**args)
+        puts args
+      end
+    end
+    a= Alumnos.create(uno:1, dos:2)
+    # => {:uno=>1, :dos=>2}
     ```
 
 13. Modificá la implementación del ejercicio anterior para que `GenericFactory` sea un módulo que se incluya como
     _Mixin_ en las subclases que implementaste. ¿Qué modificaciones tuviste que hacer en tus clases?
 
+
+    ```ruby
+    module GenericFactory
+      module ClassMethods
+        def create(**args)
+          new(**args)
+        end
+      end
+
+      def initialize(**args)
+        raise NotImplementedError
+      end
+
+      def self.included(base)
+        base.extend(ClassMethods)
+      end
+    end
+
+    class Alumnos
+      include GenericFactory
+      def initialize(**args)
+        puts args
+      end
+    end
+
+    a= Alumnos.create(uno:1, dos:2)
+    # => {:uno=>1, :dos=>2}
+    ```
+
+
 14. Extendé las clases `TrueClass` y `FalseClass` para que ambas respondan al método de instancia `opposite`, el cual en
     cada caso debe retornar el valor opuesto al que recibe la invocación al método. Por ejemplo:
 
     ```ruby
-    false.opposite
-    # => true
-    true.opposite
-    # => false
-    true.opposite.opposite
-    # => true
+    module Opposite
+      def opposite
+        !self
+      end
+    end
     ```
 
 15. Analizá el script Ruby presentado a continuación e indicá:
 
+    ```ruby
+    VALUE = 'global'
+
+    module A
+      VALUE = 'A'
+
+      class B
+        VALUE = 'B'
+
+        def self.value
+          VALUE
+        end
+
+        def value
+          'iB'
+        end
+      end
+
+      def self.value
+        VALUE
+      end
+    end
+
+    class C
+      class D
+        VALUE = 'D'
+
+        def self.value
+          VALUE
+        end
+      end
+
+      module E
+        def self.value
+          VALUE
+        end
+      end
+
+      def self.value
+        VALUE
+      end
+    end
+
+    class F < C
+      VALUE = 'F'
+    end
+    ```
+
   1. ¿Qué imprimen cada una de las siguientes sentencias? ¿De dónde está obteniendo el valor?
-     1. `puts A.value`
-     2. `puts A::B.value`
-     3. `puts C::D.value`
-     4. `puts C::E.value`
-     5. `puts F.value`
+     1. `puts A.value => "A"`
+     2. `puts A::B.value => "B"`
+     3. `puts C::D.value => "D"`
+     4. `puts C::E.value => "global"`
+     5. `puts F.value => "global"`
+
   2. ¿Qué pasaría si ejecutases las siguientes sentencias? ¿Por qué?
-     1. `puts A::value`
-     2. `puts A.new.value`
-     3. `puts B.value`
-     4. `puts D.value`
-     5. `puts C.value`
+     1. `puts A::value => "A"`
+     2. `puts A.new.value => "No se puede ya que es un modulo, no una class"`
+     3. `puts B.value => "B no existe guachin"`
+     4. `puts C::D.value => "D"`
+     5. `puts C.value => "global"`
+     6. `puts F.superclass.value => "global"`
 
 ## Bloques
 
@@ -279,12 +366,9 @@
     Por ejemplo:
 
     ```ruby
-    da_nil? { }
-    # => true
-    da_nil? do
-      'Algo distinto de nil'
+    def da_nil?
+      yield.nil?
     end
-    # => false
     ```
 
 17. Implementá un método que reciba como parámetros un `Hash` y `Proc`, y que devuelva un nuevo `Hash` cuyas las claves
@@ -294,9 +378,11 @@
     Por ejemplo:
 
     ```ruby
-    hash = { 'clave' => 1, :otra_clave => 'valor' }
-    procesar_hash(hash, ->(x) { x.to_s.upcase })
-    # => { 1 => 'CLAVE', 'valor' => 'OTRA_CLAVE' }
+    def proc_hash(hash, lamb)
+      hash_nuevo = {}
+      hash.each { |k, v| hash_nuevo[v]=lamb.call(k) }
+      hash_nuevo
+    end
     ```
 
 18. Implementá un método que reciba un número variable de parámetros y un bloque, y que al ser invocado ejecute el
@@ -309,9 +395,28 @@
     * Si se produce cualquier otra excepción, debe imprimir en pantalla `"¡No sé qué hacer!"`, y relanzar la excepción
       que se produjo.
 
+
     En caso que la ejecución del bloque sea exitosa, deberá retornar `:ok`.
 
     > Tips: Leer sobre las sentencias `raise` y `rescue`.
+
+    ```ruby
+    def e18(*args, &block)
+      begin
+        args.each {|a| yield a}
+      rescue RuntimeError
+        puts "Algo salio mal.."
+        :rt
+      rescue NoMethodError => detalle
+        puts "No encontre el metodo: "
+        puts detalle
+        :nm
+      rescue => detalle
+        "No se que hacer!"
+        raise detalle
+      end
+    end
+    ```
 
 ## Enumeradores
 
