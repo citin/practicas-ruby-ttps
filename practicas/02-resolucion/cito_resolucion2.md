@@ -355,6 +355,19 @@ los elementos fundamentales del mismo: los métodos, las clases y los módulos, 
     # => false
     true.opposite.opposite
     # => true
+
+    module Op
+      def opposite
+        !self
+      end
+    end
+
+    class TrueClass
+      include Op
+    end
+    class FalseClass
+      include Op
+    end
     ```
 
 15. Analizá el script Ruby presentado a continuación e indicá:
@@ -425,6 +438,25 @@ los elementos fundamentales del mismo: los métodos, las clases y los módulos, 
     * Si recibe un bloque, debe invocar ese bloque con cada uno de los elementos del arreglo en orden aleatorio.
     * Si no recibe un bloque, debe devolver un enumerador que va arrojando, de a uno, los elementos del arreglo en orden
       aleatorio.
+```ruby
+
+    class Array
+      def randomly
+        if block_given?
+          self.shuffle.each {|x| yield(x)}
+        else
+          self.shuffle.each
+        end
+      end
+    end
+
+    a= [1, 2, 3, 6]
+    a.randomly {|x| puts x}
+
+    a.randomly
+
+```
+
 
 23. Suponé que tenés la clase `Image` detallada más abajo para realizar procesamiento de imágenes. Esta clase representa
     en sí misma una imagen y dispone de métodos para aplicarle diversos filtros (`filter_a`, `filter_b`, `filter_c`,
