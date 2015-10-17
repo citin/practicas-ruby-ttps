@@ -176,7 +176,7 @@ end
    ```
 
   1. Seguí el flujo de ejecución registrando la traza de impresiones que deja el programa y justificando paso a paso.
-
+```
   => Entrando a fun1
   => Entrando a fun2
   => Entrando a fun3
@@ -195,7 +195,7 @@ end
     => Terminando fun 2
     => Ensure de fun1
   => Salida
-
+```
   2. ¿Qué pasaría si se permuta, dentro de `fun3`, el manejador de excepciones para `RuntimeError` y el manejador de
      excepciones genérico (el que tiene el rescue vacío)?
 
