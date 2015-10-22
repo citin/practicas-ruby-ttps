@@ -216,6 +216,16 @@ end
 10. Dado los siguientes tests, escribí el método correspondiente (el que se invoca en cada uno) para hacer que pasen:
 
     ```ruby
+
+     def incrementar(x, delta= 1)
+       return x+delta if ( x.is_a? Integer) && ( delta.is_a? Integer)
+     else raise RuntimeError
+     end
+   
+    def concatenar(*args)
+      args.join.gsub /\s+/, ' '
+    end
+
     require 'minitest/autorun'
     require 'minitest/spec'
 
